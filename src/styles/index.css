@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark theme (default) */
+:root {
+  /* Surfaces, darkest to lightest */
+  --surface-0: #1a1a1a;
+  --surface-1: #1e1e1e;
+  --surface-2: #252525;
+  --surface-3: #2a2a2a;
+  --surface-4: #2f2f2f;
+  --surface-5: #333333;
+  --surface-6: #383838;
+  --surface-7: #444444;
+
+  /* Borders */
+  --border-subtle: #383838;
+  --border-default: #444444;
+  --border-strong: #555555;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-strong: #f3f3f3;
+  --text-dim: #d4d4d4;
+  --text-secondary: #cccccc;
+  --text-muted: #aaaaaa;
+  --text-faint: #888888;
+  --text-ghost: #666666;
+  --text-on-accent: #ffffff;
+
+  /* Accent */
+  --accent: #0078d4;
+  --accent-hover: #1084d8;
+  --accent-text: #60cdff;
+
+  /* Status */
+  --danger: #c42b1c;
+  --danger-hover: #b02316;
+  --danger-text: #ff7b72;
+  --danger-border: rgba(255, 123, 114, 0.4);
+  --success-border: rgba(46, 160, 67, 0.4);
+  --text-warning: #e0a96d;
+  --text-warm: #ffa198;
+  --syntax-green: #a5d6a7;
+  --syntax-blue: #8ca3c7;
+
+  /* Overlays */
+  --scrim: rgba(24, 24, 24, 0.6);
+  --overlay-soft: rgba(255, 255, 255, 0.2);
+  --row-hover: rgba(255, 255, 255, 0.05);
+
+  /* Selection tints */
+  --selection: #2e3748;
+  --selection-strong: #3b475d;
+  --selection-border: #3d5a80;
+
+  /* Status badges */
+  --badge-modified-text: #e5c07b;
+  --badge-modified-bg: #3a3320;
+  --badge-added-text: #98c379;
+  --badge-added-bg: #233827;
+  --badge-deleted-text: #e06c75;
+  --badge-deleted-bg: #3d2024;
+  --badge-untracked-text: #c678dd;
+  --badge-untracked-bg: #35253e;
+  --badge-conflict-text: #ff5555;
+  --badge-conflict-bg: #421d1d;
+  --badge-info-text: #61afef;
+  --badge-info-bg: #202c3d;
+  --badge-success-text: #7ee787;
+}
+
+/* Light theme */
+.light {
+  --surface-0: #ffffff;
+  --surface-1: #f8f8f8;
+  --surface-2: #ffffff;
+  --surface-3: #f3f3f3;
+  --surface-4: #ebebeb;
+  --surface-5: #e0e0e0;
+  --surface-6: #d6d6d6;
+  --surface-7: #cccccc;
+
+  --border-subtle: #e5e5e5;
+  --border-default: #d4d4d4;
+  --border-strong: #c0c0c0;
+
+  --text-primary: #1f1f1f;
+  --text-strong: #1f1f1f;
+  --text-dim: #3b3b3b;
+  --text-secondary: #3b3b3b;
+  --text-muted: #5a5a5a;
+  --text-faint: #6e6e6e;
+  --text-ghost: #8a8a8a;
+  --text-on-accent: #ffffff;
+
+  --accent: #0078d4;
+  --accent-hover: #1084d8;
+  --accent-text: #0078d4;
+
+  --danger: #d13438;
+  --danger-hover: #b22c1c;
+  --danger-text: #cf222e;
+  --danger-border: rgba(207, 34, 46, 0.35);
+  --success-border: rgba(26, 127, 55, 0.35);
+  --text-warning: #9a6700;
+  --text-warm: #b42318;
+  --syntax-green: #116329;
+  --syntax-blue: #57606a;
+
+  --scrim: rgba(255, 255, 255, 0.72);
+  --overlay-soft: rgba(255, 255, 255, 0.25);
+  --row-hover: rgba(0, 0, 0, 0.04);
+
+  --selection: #dbeafe;
+  --selection-strong: #bfdbfe;
+  --selection-border: #0969da;
+
+  --badge-modified-text: #9a6700;
+  --badge-modified-bg: #fff8c5;
+  --badge-added-text: #1a7f37;
+  --badge-added-bg: #dafbe1;
+  --badge-deleted-text: #cf222e;
+  --badge-deleted-bg: #ffebe9;
+  --badge-untracked-text: #8250df;
+  --badge-untracked-bg: #fbefff;
+  --badge-conflict-text: #b42318;
+  --badge-conflict-bg: #ffebe9;
+  --badge-info-text: #0969da;
+  --badge-info-bg: #ddf4ff;
+  --badge-success-text: #1a7f37;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  background-color: var(--surface-0);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+/* Custom Fluent Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.7);
+}
+
+/* Diff Styling */
+.diff-line-add {
+  background-color: rgba(46, 160, 67, 0.2);
+  color: #7ee787;
+}
+
+.light .diff-line-add {
+  background-color: rgba(46, 160, 67, 0.15);
+  color: #1a7f37;
+}
+
+.diff-line-del {
+  background-color: rgba(248, 81, 73, 0.2);
+  color: #ffa198;
+}
+
+.light .diff-line-del {
+  background-color: rgba(248, 81, 73, 0.15);
+  color: #cf222e;
+}
+
+.diff-line-hunk {
+  background-color: rgba(56, 139, 253, 0.15);
+  color: #79c0ff;
+}
+
+.light .diff-line-hunk {
+  background-color: rgba(9, 105, 218, 0.1);
+  color: #0969da;
+}
+
+.diff-line-meta {
+  color: #8b949e;
+}
+
+.light .diff-line-meta {
+  color: #6e7781;
+}
+
+/* Checkered background for image transparency preview */
+.transparent-checkered {
+  background-image: linear-gradient(45deg, #2b2b2b 25%, transparent 25%),
+                    linear-gradient(-45deg, #2b2b2b 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #2b2b2b 75%),
+                    linear-gradient(-45deg, transparent 75%, #2b2b2b 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  background-color: #222222;
+}
+
+.light .transparent-checkered {
+  background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+                    linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+                    linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+  background-color: #f5f5f5;
+}

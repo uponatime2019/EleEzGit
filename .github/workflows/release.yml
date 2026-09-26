@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build renderer and main process
+        run: npm run build
+
+      - name: Package unpacked app
+        run: npx electron-builder --win --x64 --dir --publish never
+
+      - name: Create portable zip
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $zip = "EleEzGit-$tag-win-x64.zip"
+          Compress-Archive -Path "release/win-unpacked/*" -DestinationPath $zip
+          Write-Host "Created $zip ($([math]::Round((Get-Item $zip).Length / 1MB, 1)) MB)"
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: EleEzGit-*-win-x64.zip
+          generate_release_notes: true
