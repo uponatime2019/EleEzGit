@@ -58,13 +58,13 @@ jobs:
           Compress-Archive -Path "release/win-unpacked/*" -DestinationPath $zip
           Write-Host "Created $zip ($([math]::Round((Get-Item $zip).Length / 1MB, 1)) MB)"
 
-      # macOS packaging (DMG and ZIP for both Apple Silicon arm64 and Intel x64)
+      # macOS packaging (DMG for Apple Silicon arm64 only)
       - name: Package macOS
         if: matrix.platform == 'macos'
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
         run: |
-          npx electron-builder --mac --x64 --arm64 --publish never
+          npx electron-builder --mac --arm64 --publish never
 
       # Linux packaging (AppImage, deb, tar.gz for x64)
       - name: Package Linux
@@ -81,7 +81,7 @@ jobs:
             cp EleEzGit-*.zip dist-assets/ 2>/dev/null || true
             cp release/*.exe dist-assets/ 2>/dev/null || true
           elif [ "${{ matrix.platform }}" = "macos" ]; then
-            cp release/*.dmg release/*.zip dist-assets/ 2>/dev/null || true
+            cp release/*.dmg dist-assets/ 2>/dev/null || true
           elif [ "${{ matrix.platform }}" = "linux" ]; then
             cp release/*.AppImage release/*.deb release/*.tar.gz dist-assets/ 2>/dev/null || true
           fi

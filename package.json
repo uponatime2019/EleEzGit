@@ -67,10 +67,7 @@
       "artifactName": "${productName}-${version}-win-${arch}.${ext}"
     },
     "mac": {
-      "target": [
-        "dmg",
-        "zip"
-      ],
+      "target": "dmg",
       "icon": "assets/AppIcon.icns",
       "category": "public.app-category.developer-tools",
       "artifactName": "${productName}-${version}-mac-${arch}.${ext}"
