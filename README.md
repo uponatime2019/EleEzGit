@@ -24,7 +24,10 @@ Get up and running immediately — **no complex installation required**!
 📥 **[Download Latest Release Packages](https://github.com/uponatime2019/EleEzGit/releases/latest)**
 
 - **Windows**: Download `EleEzGit-v*-win-x64.zip`, extract to any folder, and run `EleEzGit.exe`.
-- **macOS**: Download `EleEzGit-*-mac-arm64.dmg` (Apple Silicon M1/M2/M3/M4).
+- **macOS**: Download direct `.dmg` installer:
+  - Apple Silicon (M1/M2/M3/M4): `EleEzGit-*-mac-arm64.dmg`
+  - Intel Macs: `EleEzGit-*-mac-x64.dmg`
+  > *Note for macOS*: On first launch, if prompted by Gatekeeper, right-click (or Control-click) `EleEzGit.app` in `/Applications` and select **Open**, or allow it in **System Settings > Privacy & Security**.
 - **Linux**: Download `EleEzGit-*-linux-x64.AppImage` (make executable with `chmod +x` and run), `.deb` for Ubuntu/Debian, or `.tar.gz`.
 
 ---

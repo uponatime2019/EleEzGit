@@ -58,13 +58,14 @@ jobs:
           Compress-Archive -Path "release/win-unpacked/*" -DestinationPath $zip
           Write-Host "Created $zip ($([math]::Round((Get-Item $zip).Length / 1MB, 1)) MB)"
 
-      # macOS packaging (DMG for Apple Silicon arm64 only)
+      # macOS packaging (DMG for Apple Silicon arm64 & Intel x64)
       - name: Package macOS
         if: matrix.platform == 'macos'
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
         run: |
-          npx electron-builder --mac --arm64 --publish never
+          npx electron-builder --mac --arm64 --x64 --publish never
+          codesign --force -s - release/*.dmg
 
       # Linux packaging (AppImage, deb, tar.gz for x64)
       - name: Package Linux
