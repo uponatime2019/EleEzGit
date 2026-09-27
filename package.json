@@ -24,7 +24,7 @@
     "electron",
     "developer-tools"
   ],
-  "author": "EzGit Team",
+  "author": "EzGit Team <dev@ezgit.com>",
   "license": "MIT",
   "dependencies": {
     "lucide-react": "^1.16.0",
@@ -83,6 +83,7 @@
       ],
       "icon": "assets/AppIcon.png",
       "category": "Development",
+      "maintainer": "EzGit Team <dev@ezgit.com>",
       "artifactName": "${productName}-${version}-linux-${arch}.${ext}"
     }
   }
