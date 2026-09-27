@@ -9,8 +9,19 @@ permissions:
   contents: write
 
 jobs:
-  release:
-    runs-on: windows-latest
+  build:
+    name: Build (${{ matrix.platform }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: windows
+          - os: macos-latest
+            platform: macos
+          - os: ubuntu-latest
+            platform: linux
 
     steps:
       - name: Checkout
@@ -28,19 +39,70 @@ jobs:
       - name: Build renderer and main process
         run: npm run build
 
-      - name: Package unpacked app
-        run: npx electron-builder --win --x64 --dir --publish never
-
-      - name: Create portable zip
+      # Windows packaging (portable zip)
+      - name: Package Windows
+        if: matrix.platform == 'windows'
         shell: pwsh
         run: |
+          npx electron-builder --win --x64 --dir --publish never
           $tag = "${{ github.ref_name }}"
           $zip = "EleEzGit-$tag-win-x64.zip"
           Compress-Archive -Path "release/win-unpacked/*" -DestinationPath $zip
           Write-Host "Created $zip ($([math]::Round((Get-Item $zip).Length / 1MB, 1)) MB)"
 
-      - name: Publish release
+      # macOS packaging (DMG and ZIP for both Apple Silicon arm64 and Intel x64)
+      - name: Package macOS
+        if: matrix.platform == 'macos'
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+        run: |
+          npx electron-builder --mac --x64 --arm64 --publish never
+
+      # Linux packaging (AppImage, deb, tar.gz for x64)
+      - name: Package Linux
+        if: matrix.platform == 'linux'
+        run: |
+          npx electron-builder --linux --x64 --publish never
+
+      # Collect all generated distribution packages into dist-assets
+      - name: Stage Release Artifacts
+        shell: bash
+        run: |
+          mkdir -p dist-assets
+          if [ "${{ matrix.platform }}" = "windows" ]; then
+            cp EleEzGit-*.zip dist-assets/ 2>/dev/null || true
+            cp release/*.exe dist-assets/ 2>/dev/null || true
+          elif [ "${{ matrix.platform }}" = "macos" ]; then
+            cp release/*.dmg release/*.zip dist-assets/ 2>/dev/null || true
+          elif [ "${{ matrix.platform }}" = "linux" ]; then
+            cp release/*.AppImage release/*.deb release/*.tar.gz dist-assets/ 2>/dev/null || true
+          fi
+          ls -la dist-assets/
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.platform }}
+          path: dist-assets/*
+          retention-days: 1
+
+  publish:
+    name: Publish Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all release artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          path: all-assets
+          merge-multiple: true
+
+      - name: Inspect release assets
+        run: ls -lh all-assets
+
+      - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: EleEzGit-*-win-x64.zip
+          files: all-assets/*
           generate_release_notes: true

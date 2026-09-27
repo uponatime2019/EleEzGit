@@ -19,14 +19,15 @@ export const CommitBar: React.FC = () => {
   // Global keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === 'g') {
+      const isCmdOrCtrl = e.ctrlKey || e.metaKey;
+      if (isCmdOrCtrl && (e.key === 'g' || e.key === 'G')) {
         e.preventDefault();
         inputRef.current?.focus();
         inputRef.current?.select();
-      } else if (e.ctrlKey && e.key === 'i') {
+      } else if (isCmdOrCtrl && (e.key === 'i' || e.key === 'I')) {
         e.preventDefault();
         aiCommitAndPush();
-      } else if (e.ctrlKey && e.key === 'Enter') {
+      } else if (isCmdOrCtrl && e.key === 'Enter') {
         e.preventDefault();
         commitAndPush();
       }
@@ -83,7 +84,7 @@ export const CommitBar: React.FC = () => {
             value={commitMessage}
             onChange={(e) => setCommitMessage(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' && e.ctrlKey) {
+              if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
                 e.preventDefault();
                 commitAndPush();
               }

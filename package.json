@@ -11,7 +11,10 @@
     "build:renderer": "vite build",
     "build": "npm run build:electron && npm run build:renderer",
     "preview": "vite preview",
-    "dist": "npm run build && electron-builder"
+    "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:linux": "npm run build && electron-builder --linux"
   },
   "keywords": [
     "git",
@@ -57,9 +60,30 @@
     "win": {
       "target": [
         "nsis",
-        "portable"
+        "portable",
+        "zip"
       ],
-      "icon": "assets/AppIcon.ico"
+      "icon": "assets/AppIcon.ico",
+      "artifactName": "${productName}-${version}-win-${arch}.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "assets/AppIcon.icns",
+      "category": "public.app-category.developer-tools",
+      "artifactName": "${productName}-${version}-mac-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "tar.gz"
+      ],
+      "icon": "assets/AppIcon.png",
+      "category": "Development",
+      "artifactName": "${productName}-${version}-linux-${arch}.${ext}"
     }
   }
 }

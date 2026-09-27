@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/Electron-34.x-blue?logo=electron" alt="Electron" />
   <img src="https://img.shields.io/badge/UI-React%2019%20%2B%20Tailwind-purple?logo=react" alt="React 19" />
   <img src="https://img.shields.io/badge/Vite-6.x-green?logo=vite" alt="Vite" />
-  <img src="https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows" alt="Windows" />
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue?logo=windows" alt="Platform: Windows, macOS, Linux" />
   <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License" />
   <a href="https://github.com/uponatime2019/EleEzGit/releases/latest">
     <img src="https://img.shields.io/github/v/release/uponatime2019/EleEzGit?color=orange&label=Latest%20Release" alt="Latest Release" />
@@ -21,11 +21,13 @@
 
 Get up and running immediately — **no complex installation required**!
 
-📥 **[Download Latest Portable Release (.zip)](https://github.com/uponatime2019/EleEzGit/releases/latest)**
+📥 **[Download Latest Release Packages](https://github.com/uponatime2019/EleEzGit/releases/latest)**
 
-1. Download `EleEzGit-v*-win-x64.zip`.
-2. Extract the archive to any folder on your machine.
-3. Launch `EleEzGit.exe` — enjoy fast Git diffs and AI-assisted commits!
+- **Windows**: Download `EleEzGit-v*-win-x64.zip`, extract to any folder, and run `EleEzGit.exe`.
+- **macOS**: Download `.dmg` (or `.zip`) for your architecture:
+  - Apple Silicon (M1/M2/M3/M4): `EleEzGit-*-mac-arm64.dmg`
+  - Intel Macs: `EleEzGit-*-mac-x64.dmg`
+- **Linux**: Download `EleEzGit-*-linux-x64.AppImage` (make executable with `chmod +x` and run), `.deb` for Ubuntu/Debian, or `.tar.gz`.
 
 ---
 
@@ -162,7 +164,7 @@ EleEzGit/
 - [ ] Multi-branch switcher and remote management pane
 - [ ] Git stash list, preview, and pop interface
 - [ ] Git log graphical branch topology tree
-- [ ] Cross-platform builds (macOS, Linux)
+- [x] Cross-platform builds (Windows, macOS, Linux)
 
 ---
 

@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, dialog, shell, clipboard } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog, shell, clipboard, Menu } from 'electron';
 import path from 'path';
 import fs from 'fs';
 import {
@@ -54,6 +54,7 @@ if (!gotTheLock) {
 
   app.whenReady().then(() => {
     console.log('[Main] App is ready. Creating window...');
+    setupMenu();
     createWindow();
 
     app.on('activate', () => {
@@ -64,8 +65,65 @@ if (!gotTheLock) {
   });
 }
 
+function setupMenu() {
+  if (process.platform === 'darwin') {
+    const template: Electron.MenuItemConstructorOptions[] = [
+      {
+        label: app.name,
+        submenu: [
+          { role: 'about' },
+          { type: 'separator' },
+          { role: 'services' },
+          { type: 'separator' },
+          { role: 'hide' },
+          { role: 'hideOthers' },
+          { role: 'unhide' },
+          { type: 'separator' },
+          { role: 'quit' },
+        ],
+      },
+      {
+        label: 'Edit',
+        submenu: [
+          { role: 'undo' },
+          { role: 'redo' },
+          { type: 'separator' },
+          { role: 'cut' },
+          { role: 'copy' },
+          { role: 'paste' },
+          { role: 'selectAll' },
+        ],
+      },
+      {
+        label: 'View',
+        submenu: [
+          { role: 'reload' },
+          { role: 'forceReload' },
+          { role: 'toggleDevTools' },
+          { type: 'separator' },
+          { role: 'resetZoom' },
+          { role: 'zoomIn' },
+          { role: 'zoomOut' },
+          { type: 'separator' },
+          { role: 'togglefullscreen' },
+        ],
+      },
+      {
+        label: 'Window',
+        submenu: [
+          { role: 'minimize' },
+          { role: 'zoom' },
+          { role: 'close' },
+        ],
+      },
+    ];
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+  }
+}
+
 function createWindow() {
-  const iconPath = path.join(__dirname, '../assets/AppIcon.ico');
+  const iconName = process.platform === 'win32' ? 'AppIcon.ico' : 'AppIcon.png';
+  const iconPath = path.join(__dirname, '../assets', iconName);
   const htmlPath = path.join(__dirname, '../dist/index.html');
 
   console.log('[Main] Loading HTML from:', htmlPath, 'Exists:', fs.existsSync(htmlPath));
