@@ -90,7 +90,7 @@ export const CommitBar: React.FC = () => {
               }
             }}
             placeholder="Commit message (Ctrl + Enter to commit & push)"
-            className="w-full px-3 py-1.5 text-xs bg-[var(--surface-0)] text-[var(--text-on-accent)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] placeholder-[var(--text-faint)]"
+            className="w-full px-3 py-1.5 text-xs bg-[var(--surface-0)] text-[var(--text-primary)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] placeholder-[var(--text-faint)]"
           />
         </div>
 

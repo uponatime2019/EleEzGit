@@ -109,7 +109,7 @@ export const SettingsModal: React.FC = () => {
                 value={formData.apiUrl}
                 onChange={(e) => setFormData({ ...formData, apiUrl: e.target.value })}
                 placeholder="https://api.deepseek.com/chat/completions"
-                className="w-full px-2.5 py-1.5 bg-[var(--surface-3)] text-[var(--text-on-accent)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)]"
+                className="w-full px-2.5 py-1.5 bg-[var(--surface-0)] text-[var(--text-primary)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)] placeholder-[var(--text-faint)]"
               />
             </div>
 
@@ -121,7 +121,7 @@ export const SettingsModal: React.FC = () => {
                   value={formData.apiKey}
                   onChange={(e) => setFormData({ ...formData, apiKey: e.target.value })}
                   placeholder="sk-..."
-                  className="flex-1 px-2.5 py-1.5 bg-[var(--surface-3)] text-[var(--text-on-accent)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)]"
+                  className="flex-1 px-2.5 py-1.5 bg-[var(--surface-0)] text-[var(--text-primary)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)] placeholder-[var(--text-faint)]"
                 />
                 <button
                   type="button"
@@ -140,7 +140,7 @@ export const SettingsModal: React.FC = () => {
                 value={formData.model}
                 onChange={(e) => setFormData({ ...formData, model: e.target.value })}
                 placeholder="deepseek-chat or gpt-4o-mini"
-                className="w-full px-2.5 py-1.5 bg-[var(--surface-3)] text-[var(--text-on-accent)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)]"
+                className="w-full px-2.5 py-1.5 bg-[var(--surface-0)] text-[var(--text-primary)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)] placeholder-[var(--text-faint)]"
               />
             </div>
 
@@ -187,12 +187,12 @@ export const SettingsModal: React.FC = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, prefixMode: e.target.value as GitPrefixMode })
                 }
-                className="w-full px-2.5 py-1.5 bg-[var(--surface-3)] text-[var(--text-on-accent)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)]"
+                className="w-full px-2.5 py-1.5 bg-[var(--surface-0)] text-[var(--text-primary)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)] cursor-pointer"
               >
-                <option value="AutoFolder">Auto Folder Tag (e.g. [Services\GitService])</option>
-                <option value="Custom">Custom Prefix Only (e.g. feat: or [WIP])</option>
-                <option value="Both">Both (e.g. [Services\GitService] feat:)</option>
-                <option value="None">None (No prefix)</option>
+                <option value="AutoFolder" className="bg-[var(--surface-0)] text-[var(--text-primary)]">Auto Folder Tag (e.g. [Services\GitService])</option>
+                <option value="Custom" className="bg-[var(--surface-0)] text-[var(--text-primary)]">Custom Prefix Only (e.g. feat: or [WIP])</option>
+                <option value="Both" className="bg-[var(--surface-0)] text-[var(--text-primary)]">Both (e.g. [Services\GitService] feat:)</option>
+                <option value="None" className="bg-[var(--surface-0)] text-[var(--text-primary)]">None (No prefix)</option>
               </select>
             </div>
 
@@ -204,7 +204,7 @@ export const SettingsModal: React.FC = () => {
                   value={formData.customPrefix}
                   onChange={(e) => setFormData({ ...formData, customPrefix: e.target.value })}
                   placeholder="e.g. feat: or fix: or [WIP]"
-                  className="w-full px-2.5 py-1.5 bg-[var(--surface-3)] text-[var(--text-on-accent)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)]"
+                  className="w-full px-2.5 py-1.5 bg-[var(--surface-0)] text-[var(--text-primary)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)] placeholder-[var(--text-faint)]"
                 />
               </div>
             )}
@@ -232,7 +232,7 @@ export const SettingsModal: React.FC = () => {
                   value={formData.repositoryPath}
                   onChange={(e) => setFormData({ ...formData, repositoryPath: e.target.value })}
                   placeholder="Auto-detected repository..."
-                  className="flex-1 px-2.5 py-1.5 bg-[var(--surface-3)] text-[var(--text-on-accent)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)]"
+                  className="flex-1 px-2.5 py-1.5 bg-[var(--surface-0)] text-[var(--text-primary)] border border-[var(--border-default)] rounded focus:outline-none focus:border-[var(--accent)] placeholder-[var(--text-faint)]"
                 />
                 <button
                   type="button"

@@ -1,6 +1,6 @@
 {
   "name": "eleezgit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "description": "Fast, Lightweight, Native-style Git Diff Viewer & AI Commit Assistant built with Electron",
   "main": "dist-electron/main.cjs",

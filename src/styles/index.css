@@ -4,6 +4,7 @@
 
 /* Dark theme (default) */
 :root {
+  color-scheme: dark;
   /* Surfaces, darkest to lightest */
   --surface-0: #1a1a1a;
   --surface-1: #1e1e1e;
@@ -73,6 +74,7 @@
 
 /* Light theme */
 .light {
+  color-scheme: light;
   --surface-0: #ffffff;
   --surface-1: #f8f8f8;
   --surface-2: #ffffff;
@@ -139,6 +141,16 @@ body {
   background-color: var(--surface-0);
   color: var(--text-primary);
   font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+input, select, textarea {
+  color-scheme: inherit;
+  color: var(--text-primary);
+}
+
+select option {
+  background-color: var(--surface-1);
+  color: var(--text-primary);
 }
 
 /* Custom Fluent Scrollbar */
